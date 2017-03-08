@@ -1,0 +1,6 @@
+# Properties to retrieve metadata from a sandbox
+sf.username = YOUR_DEV_USERNAME
+sf.password = YOUR_DEV_PASSWORD_AND_SECURITY_TOKEN
+sf.serverurl = https://test.salesforce.com
+sf.maxPoll = 600
+sf.pollWaitMillis = 30000
