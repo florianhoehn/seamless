@@ -1,17 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
   <project xmlns:sf="antlib:com.salesforce" default="sf" basedir=".">
   <taskdef uri="antlib:com.salesforce" resource="com/salesforce/antlib.xml" classpath="lib/ant-salesforce.jar"/>
-
   <property environment="env" />
-  <property file="build.properties"/>
+
+  <fail>
+    <condition>
+      <not>
+        <isset property="env.CI_USERNAME"/>
+      </not>
+    </condition>
+  </fail>
+  <fail>
+    <condition>
+      <not>
+        <isset property="env.CI_PASSWORD"/>
+      </not>
+    </condition>
+  </fail>
+
+  <condition property="env.CI_SERVERURL" value="https://test.salesforce.com">
+    <not>
+      <isset property="env.CI_SERVERURL"/>
+    </not>
+  </condition>
+  <condition property="env.CI_MAXPOLL" value="600">
+    <not>
+      <isset property="env.CI_MAXPOLL"/>
+    </not>
+  </condition>
+  <condition property="env.CI_POLLWAITMILLIS" value="3000">
+    <not>
+      <isset property="env.CI_POLLWAITMILLIS"/>
+    </not>
+  </condition>
+  <condition property="env.CI_TESTLEVEL" value="RunLocalTests">
+    <not>
+      <isset property="env.CI_TESTLEVEL"/>
+    </not>
+  </condition>
 
   <target name="validate">
-    <echo>Validate and run local tests in Org with username: ${sf.username}</echo>
-    <sf:deploy username="${sf.username}"
-               password="${sf.password}"
-               serverurl="${sf.serverurl}"
+    <echo>Validate and run local tests in Org with username: ${env.CI_USERNAME}</echo>
+    <sf:deploy username="${env.CI_USERNAME}"
+               password="${env.CI_PASSWORD}"
+               serverurl="${env.CI_SERVERURL}"
                deployRoot="../src"
-               testLevel="RunLocalTests"
+               testLevel="${env.CI_TESTLEVEL}"
+               maxPoll="${env.CI_MAXPOLL}"
+               pollWaitMillis="${env.CI_POLLWAITMILLIS}"
                checkOnly="true"/>
   </target>
 </project>
