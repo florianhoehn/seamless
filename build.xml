@@ -44,10 +44,10 @@
     <sf:deploy username="${env.CI_USERNAME}"
                password="${env.CI_PASSWORD}"
                serverurl="${env.CI_SERVERURL}"
-               deployRoot="../src"
                testLevel="${env.CI_TESTLEVEL}"
                maxPoll="${env.CI_MAXPOLL}"
                pollWaitMillis="${env.CI_POLLWAITMILLIS}"
+               deployRoot="../src"
                checkOnly="true"/>
   </target>
 </project>
