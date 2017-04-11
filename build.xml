@@ -38,8 +38,13 @@
       <isset property="env.CI_TESTLEVEL"/>
     </not>
   </condition>
+  <condition property="env.CI_CHECKONLY" value="true">
+    <not>
+      <isset property="env.CI_CHECKONLY"/>
+    </not>
+  </condition>
 
-  <target name="validate">
+  <target name="build">
     <echo>Validate and run local tests in Org with username: ${env.CI_USERNAME}</echo>
     <sf:deploy username="${env.CI_USERNAME}"
                password="${env.CI_PASSWORD}"
@@ -47,7 +52,7 @@
                testLevel="${env.CI_TESTLEVEL}"
                maxPoll="${env.CI_MAXPOLL}"
                pollWaitMillis="${env.CI_POLLWAITMILLIS}"
-               deployRoot="../src"
-               checkOnly="true"/>
+               checkOnly="${env.CI_CHECKONLY}"
+               deployRoot="../src"/>
   </target>
 </project>
