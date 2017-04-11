@@ -26,6 +26,18 @@ script:
   - ant -lib seamless/lib/ -f seamless/build.xml validate
 ```
 
+### CircleCI
+copy this into your circle.yml:
+```
+machine:
+  java:
+    version: oraclejdk8
+test:
+  override:
+    - git submodule add --force https://github.com/florianhoehn/seamless.git
+    - ant -lib seamless/lib/ -f seamless/build.xml validate
+```
+
 ## Contributing
 Let's create issues and pull requests to enhance what seamless can do.
 
