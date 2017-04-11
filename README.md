@@ -1,5 +1,5 @@
 # seamless
-seamless is a tool to create easily setup continuous integration for Salesforce.com
+seamless is a tool to easily setup continuous integration for Salesforce.com
 
 ## Setup
 
