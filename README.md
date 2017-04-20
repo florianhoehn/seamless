@@ -17,7 +17,7 @@ CI_CHECKONLY (default="true")
 
 ### Travis-CI
 copy this into your .travis.yml:
-```
+```yaml
 language: java
 branches:
   only: 
@@ -29,7 +29,7 @@ script:
 
 ### CircleCI
 copy this into your circle.yml:
-```
+```yaml
 machine:
   java:
     version: oraclejdk8
