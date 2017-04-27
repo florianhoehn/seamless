@@ -1,5 +1,7 @@
-# seamless
-seamless is a tool to easily setup continuous integration for Salesforce.com
+# Seamless
+Seamless is a tool to easily setup continuous integration for Salesforce.com. It's using Travis-CI, ApexMetrics and CodeClimate to create an easy and consistent workflow and quality assurance for your project.
+
+All these tools are free for OpenSource projects.
 
 ## Setup
 
@@ -16,7 +18,7 @@ CI_CHECKONLY (default="true")
 ```
 
 ### Travis-CI
-copy this into your .travis.yml:
+COPY this into your .travis.yml:
 ```yaml
 language: java
 branches:
@@ -27,21 +29,17 @@ script:
   - ant -lib seamless/lib/ -f seamless/build.xml build
 ```
 
-### CircleCI
-copy this into your circle.yml:
+### CodeClimate's ApexMetrics
+COPY this into your .codeclimate.yml to use ApexMetric
 ```yaml
-machine:
-  java:
-    version: oraclejdk8
-test:
-  override:
-    - git submodule add --force https://github.com/florianhoehn/seamless.git
-    - ant -lib seamless/lib/ -f seamless/build.xml build
+engines:
+ apexmetrics:
+    enabled: true
+ratings:
+  paths:
+    - "**.cls"
+    - "**.trigger"
 ```
 
 ## Contributing
 Let's create issues and pull requests to enhance what seamless can do.
-
-### Roadmap
-- get more CI tools examples
-- add to build.xml
