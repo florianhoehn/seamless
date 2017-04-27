@@ -17,6 +17,8 @@ CI_TESTLEVEL (default="RunLocalTests")
 CI_CHECKONLY (default="true")
 ```
 
+either clone [this repository](https://github.com/florianhoehn/seamless-initial-project) to have a seamless integrated empty project or:
+
 ### Travis-CI
 COPY this into your .travis.yml:
 ```yaml
