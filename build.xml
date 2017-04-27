@@ -3,21 +3,8 @@
   <taskdef uri="antlib:com.salesforce" resource="com/salesforce/antlib.xml" classpath="lib/ant-salesforce.jar"/>
   <property environment="env" />
 
-  <fail>
-    <condition>
-      <not>
-        <isset property="env.CI_USERNAME"/>
-      </not>
-    </condition>
-  </fail>
-  <fail>
-    <condition>
-      <not>
-        <isset property="env.CI_PASSWORD"/>
-      </not>
-    </condition>
-  </fail>
-
+  <fail message="No 'CI_USERNAME' set" unless="env.CI_USERNAME" />
+  <fail message="No 'CI_PASSWORD' set" unless="env.CI_PASSWORD" />
   <condition property="env.CI_SERVERURL" value="https://test.salesforce.com">
     <not>
       <isset property="env.CI_SERVERURL"/>
