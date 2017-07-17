@@ -13,8 +13,12 @@ CI_PASSWORD (required)
 CI_SERVERURL (default="https://test.salesforce.com")
 CI_MAXPOLL (default="600")
 CI_POLLWAITMILLIS (default="3000")
-CI_TESTLEVEL (default="RunLocalTests")
+CI_ALLOWMISSINGFILES (default="false")
 CI_CHECKONLY (default="true")
+CI_IGNOREWARNINGS (default="false")
+CI_PURGEONDELETE (default="false")
+CI_ROLLBACKONERROR (default="true")
+CI_TESTLEVEL (default="RunLocalTests")
 ```
 
 either clone [this repository](https://github.com/florianhoehn/seamless-initial-project) to have a seamless integrated empty project or:
@@ -24,9 +28,9 @@ COPY this into your .travis.yml:
 ```yaml
 language: java
 branches:
-  only: 
+  only:
     - master
-script: 
+script:
   - git submodule add --force https://github.com/florianhoehn/seamless.git
   - ant -lib seamless/lib/ -f seamless/build.xml build
 ```

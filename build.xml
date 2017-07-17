@@ -20,14 +20,34 @@
       <isset property="env.CI_POLLWAITMILLIS"/>
     </not>
   </condition>
-  <condition property="env.CI_TESTLEVEL" value="RunLocalTests">
+  <condition property="env.CI_ALLOWMISSINGFILES" value="false">
     <not>
-      <isset property="env.CI_TESTLEVEL"/>
+      <isset property="env.CI_ALLOWMISSINGFILES"/>
     </not>
   </condition>
   <condition property="env.CI_CHECKONLY" value="true">
     <not>
       <isset property="env.CI_CHECKONLY"/>
+    </not>
+  </condition>
+    <condition property="env.CI_IGNOREWARNINGS" value="false">
+    <not>
+      <isset property="env.CI_IGNOREWARNINGS"/>
+    </not>
+  </condition>
+    <condition property="env.CI_PURGEONDELETE" value="false">
+    <not>
+      <isset property="env.CI_PURGEONDELETE"/>
+    </not>
+  </condition>
+    <condition property="env.CI_ROLLBACKONERROR" value="true">
+    <not>
+      <isset property="env.CI_ROLLBACKONERROR"/>
+    </not>
+  </condition>
+  <condition property="env.CI_TESTLEVEL" value="RunLocalTests">
+    <not>
+      <isset property="env.CI_TESTLEVEL"/>
     </not>
   </condition>
 
@@ -36,10 +56,14 @@
     <sf:deploy username="${env.CI_USERNAME}"
                password="${env.CI_PASSWORD}"
                serverurl="${env.CI_SERVERURL}"
-               testLevel="${env.CI_TESTLEVEL}"
                maxPoll="${env.CI_MAXPOLL}"
                pollWaitMillis="${env.CI_POLLWAITMILLIS}"
+               allowMissingFiles="${env.CI_ALLOWMISSINGFILES}"
                checkOnly="${env.CI_CHECKONLY}"
+               ignoreWarnings="${env.CI_IGNOREWARNINGS}"
+               purgeOnDelete="${env.CI_PURGEONDELETE}"
+               rollbackOnError="${env.CI_ROLLBACKONERROR}"
+               testLevel="${env.CI_TESTLEVEL}"
                deployRoot="../src"/>
   </target>
 </project>
