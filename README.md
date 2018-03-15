@@ -1,5 +1,5 @@
 # Seamless
-Seamless is a tool to easily setup continuous integration for Salesforce.com. It's using Travis-CI, ApexMetrics and CodeClimate to create an easy and consistent workflow and quality assurance for your project.
+Seamless is a tool to easily setup continuous integration for Salesforce.com. It's using Travis-CI to create an easy and consistent workflow and quality assurance for your project.
 
 All these tools are free for OpenSource projects.
 
@@ -33,18 +33,6 @@ branches:
 script:
   - git submodule add --force https://github.com/florianhoehn/seamless.git
   - ant -lib seamless/lib/ -f seamless/build.xml build
-```
-
-### CodeClimate's ApexMetrics
-COPY this into your .codeclimate.yml to use ApexMetric
-```yaml
-engines:
- apexmetrics:
-    enabled: true
-ratings:
-  paths:
-    - "**.cls"
-    - "**.trigger"
 ```
 
 ## Contributing
