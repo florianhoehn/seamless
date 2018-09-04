@@ -1,69 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-  <project xmlns:sf="antlib:com.salesforce" default="sf" basedir=".">
-  <taskdef uri="antlib:com.salesforce" resource="com/salesforce/antlib.xml" classpath="lib/ant-salesforce.jar"/>
-  <property environment="env" />
+<project xmlns:sf="antlib:com.salesforce" default="sf" basedir=".">
+    <taskdef uri="antlib:com.salesforce" resource="com/salesforce/antlib.xml" classpath="lib/ant-salesforce.jar"></taskdef>
+    <property environment="env"></property>
 
-  <fail message="No 'CI_USERNAME' set" unless="env.CI_USERNAME" />
-  <fail message="No 'CI_PASSWORD' set" unless="env.CI_PASSWORD" />
-  <condition property="env.CI_SERVERURL" value="https://test.salesforce.com">
-    <not>
-      <isset property="env.CI_SERVERURL"/>
-    </not>
-  </condition>
-  <condition property="env.CI_MAXPOLL" value="600">
-    <not>
-      <isset property="env.CI_MAXPOLL"/>
-    </not>
-  </condition>
-  <condition property="env.CI_POLLWAITMILLIS" value="3000">
-    <not>
-      <isset property="env.CI_POLLWAITMILLIS"/>
-    </not>
-  </condition>
-  <condition property="env.CI_ALLOWMISSINGFILES" value="false">
-    <not>
-      <isset property="env.CI_ALLOWMISSINGFILES"/>
-    </not>
-  </condition>
-  <condition property="env.CI_CHECKONLY" value="true">
-    <not>
-      <isset property="env.CI_CHECKONLY"/>
-    </not>
-  </condition>
+    <fail message="No 'CI_USERNAME' set" unless="env.CI_USERNAME"></fail>
+    <fail message="No 'CI_PASSWORD' set" unless="env.CI_PASSWORD"></fail>
+    <condition property="env.CI_SERVERURL" value="https://test.salesforce.com">
+        <not>
+            <isset property="env.CI_SERVERURL"></isset>
+        </not>
+    </condition>
+    <condition property="env.CI_MAXPOLL" value="600">
+        <not>
+            <isset property="env.CI_MAXPOLL"></isset>
+        </not>
+    </condition>
+    <condition property="env.CI_POLLWAITMILLIS" value="3000">
+        <not>
+            <isset property="env.CI_POLLWAITMILLIS"></isset>
+        </not>
+    </condition>
+    <condition property="env.CI_ALLOWMISSINGFILES" value="false">
+        <not>
+            <isset property="env.CI_ALLOWMISSINGFILES"></isset>
+        </not>
+    </condition>
+    <condition property="env.CI_CHECKONLY" value="true">
+        <not>
+            <isset property="env.CI_CHECKONLY"></isset>
+        </not>
+    </condition>
     <condition property="env.CI_IGNOREWARNINGS" value="false">
-    <not>
-      <isset property="env.CI_IGNOREWARNINGS"/>
-    </not>
-  </condition>
+        <not>
+            <isset property="env.CI_IGNOREWARNINGS"></isset>
+        </not>
+    </condition>
     <condition property="env.CI_PURGEONDELETE" value="false">
-    <not>
-      <isset property="env.CI_PURGEONDELETE"/>
-    </not>
-  </condition>
+        <not>
+            <isset property="env.CI_PURGEONDELETE"></isset>
+        </not>
+    </condition>
     <condition property="env.CI_ROLLBACKONERROR" value="true">
-    <not>
-      <isset property="env.CI_ROLLBACKONERROR"/>
-    </not>
-  </condition>
-  <condition property="env.CI_TESTLEVEL" value="RunLocalTests">
-    <not>
-      <isset property="env.CI_TESTLEVEL"/>
-    </not>
-  </condition>
+        <not>
+            <isset property="env.CI_ROLLBACKONERROR"></isset>
+        </not>
+    </condition>
+    <condition property="env.CI_TESTLEVEL" value="RunLocalTests">
+        <not>
+            <isset property="env.CI_TESTLEVEL"></isset>
+        </not>
+    </condition>
 
-  <target name="build">
-    <echo>Validate and run local tests in Org with username: ${env.CI_USERNAME}</echo>
-    <sf:deploy username="${env.CI_USERNAME}"
-               password="${env.CI_PASSWORD}"
-               serverurl="${env.CI_SERVERURL}"
-               maxPoll="${env.CI_MAXPOLL}"
-               pollWaitMillis="${env.CI_POLLWAITMILLIS}"
-               allowMissingFiles="${env.CI_ALLOWMISSINGFILES}"
-               checkOnly="${env.CI_CHECKONLY}"
-               ignoreWarnings="${env.CI_IGNOREWARNINGS}"
-               purgeOnDelete="${env.CI_PURGEONDELETE}"
-               rollbackOnError="${env.CI_ROLLBACKONERROR}"
-               testLevel="${env.CI_TESTLEVEL}"
-               deployRoot="../src"/>
-  </target>
+    <target name="build">
+        <echo>Validate and run local tests in Org with username: ${env.CI_USERNAME}</echo>
+        <sf:deploy 
+                username="${env.CI_USERNAME}"
+                password="${env.CI_PASSWORD}"
+                serverurl="${env.CI_SERVERURL}"
+                maxPoll="${env.CI_MAXPOLL}"
+                pollWaitMillis="${env.CI_POLLWAITMILLIS}"
+                allowMissingFiles="${env.CI_ALLOWMISSINGFILES}"
+                checkOnly="${env.CI_CHECKONLY}"
+                ignoreWarnings="${env.CI_IGNOREWARNINGS}"
+                purgeOnDelete="${env.CI_PURGEONDELETE}"
+                rollbackOnError="${env.CI_ROLLBACKONERROR}"
+                testLevel="${env.CI_TESTLEVEL}"
+                deployRoot="../src">
+        </sf:deploy>
+    </target>
 </project>
